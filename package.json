@@ -1,0 +1,15 @@
+{
+  "name": "Conference",
+  "version": "1.0.0",
+  "description": "This website will help login, sign up and checkin at a conference",
+  "main": "server.js",
+  "repository": "",
+  "author": "Kokou Kingbede <kingbedenono@yahoo.fr>",
+  "dependencies": {
+    "async": "~0.2.8",
+    "express": "~3.2.4",
+    "jsqrcode": "0.0.6",
+    "mongodb": "^2.2.24",
+    "socket.io": "~0.9.14"
+  }
+}

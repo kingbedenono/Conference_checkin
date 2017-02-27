@@ -1,0 +1,18 @@
+to create qr code link 
+
+http://goqr.me/api/doc/create-qr-code/
+
+to get http call camera
+
+<input type="file" accept="image/*">
+
+scan from a web page
+
+https://github.com/zxing/zxing/wiki/Scanning-From-Web-Pages
+
+https://www.npmjs.com/package/jsqrcode
+
+CSS coding
+
+https://www.w3schools.com/w3css/w3css_buttons.asp
+

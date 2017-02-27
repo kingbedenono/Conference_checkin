@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" ng-app>
+  <head>
+    <title>Conference Check in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <!--main css-->
+    <link rel="stylesheet" href="css/w3.css">
+     <!--main scripts-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <style>
+      body {
+        padding-top: 10px;
+      }
+    </style>
+    <script>
+      function ChatController($scope) {
+        var socket = io.connect();
+
+        $scope.messages = [];
+        $scope.roster = [];
+        $scope.name = '';
+        $scope.text = '';
+
+        socket.on('connect', function () {
+          $scope.setName();
+        });
+
+        socket.on('message', function (msg) {
+          $scope.messages.push(msg);
+          $scope.$apply();
+        });
+
+        socket.on('roster', function (names) {
+          $scope.roster = names;
+          $scope.$apply();
+        });
+
+        $scope.send = function send() {
+          console.log('Sending message:', $scope.text);
+          socket.emit('message', $scope.text);
+          $scope.text = '';
+        };
+
+        $scope.setName = function setName() {
+          socket.emit('identify', $scope.name);
+        };
+      }
+    </script>
+  </head>
+  <body>
+    <!--header-->
+    <div class="w3-container w3-teal">
+      <div style="float : left;">
+        <img src="" alt="" width="" height="">
+      </div>
+      <div>
+        <center><h1>Conference Checker</h1>Conference Checker</center>
+      </div>
+      <div style="float : right;">
+        <input type="text" placeholder="Login" />
+        <input type="text" placeholder="Password" />
+        <input type="checkbox"/> As admin
+        <input type="button" class="btn btn-info btn-lg"  value="Log in"/>
+      </div>
+      </div>
+    </div>
+    <!--Body core-->
+    <div class="container">
+      <!--app description core-->
+     <div class="w3-twothird w3-border w3-red w3-hover-khaki" >
+       <img src="img/logo type.png" alt="Conference" width="500" height="100">
+       <p>
+         Loi 2012-016 portant création de l’Office Togolais des Recettes a suscité une grande polémique dans tout le pays. D’abord parce que Ingrid Awadé, très intime au président de la République et qui tient d’une main de fer la direction des impôts, entre astuces mafieux et détournements allègres, a manipulé opinion et services secrets comme elle a pu. Ensuite, le projet en lui-même n’avait de clarté que le fait d’être une copie collée du système rwandais moins adapté au Togo qui ne dispose pas de système de contrôle informatique fiable. Mais le ministre des finances y pousse le chef de l’Etat. Otheth Ayassor élimine non seulement, ainsi, une rivale de tous les temps, Mme Awadé, mais récompense aussi son réseau rwandais qui prenait progressivement le contrôle de l’administration togolaise. Ce réseau lui a permis, entre chantages et pressions, de rester à la tête de l’argent public pendant une décennie. Les choses vont très vite. L’OTR est fonctionnel. Mais il posera, très tôt, un problème de souveraineté. Avec l’influence personnelle de Paul Kagamé, président du Rwanda pour qui Faure Gnassingbé voue une admiration sans pareille, Gapéri a les mains libres pour faire ce qu’il veut. Les grands pans du système informatique, les consultants les plus importants, les principaux cabinets partenaires, tous est rwandais. Ce qui permet, pour les salaires, émoluments et autres indemnités, de déporter mensuellement vers Kigali entre 5,6 et 7 milliards de cfa selon diverses sources. Sans compter la branche canadienne de Gapéri, minée d’espions rwandais, là aussi. Et comble du ridicule, les recettes ne vont pas toutes directement au Trésor togolais. Une ramification complexe est mise en place pour entraîner une partie de compte en compte, permettant à des intermédiaires invisibles et réseaux particuliers de tirer quelques bénéfices. C’est sans compter le train de vie dispendieux du Commissaire général au dos des finances togolaises et les folles indemnités qu’il accorde à son service fictif de protocole et à son interprète alors que la logique voudrait que la condition préliminaire pour postuler à ce poste soit de parler français. Le mystérieux rwandais qui a fait une partie de ses études au Québec (province francophone du Canada) parle et travaille essentiellement en anglais. Qui pis est, quelques jours avant de partir, il a craint un audit prévu par le gouvernement et qui le suspecte de diverses malversations évaluées à 23 milliards. Sans compter de faux bons de commandes (payés avant livraison) dont le montant total avoisine 3 milliards.
+       </p>
+     </div>
+     <div class="w3-third  w3-border" >
+       <div class="w3-panel w3-card-4 w3-yellow" >
+         To register to the website :
+       </div>
+       <form class="w3-container">
+         
+        <input class="w3-input" type="text" placeholder="First name" required>
+        <label class="w3-label w3-validate">First Name</label>
+
+        <input class="w3-input" type="text" placeholder="Last name" required>
+        <label class="w3-label w3-validate">Last Name</label>
+
+        <input class="w3-input" type="email"  placeholder="Email"required>
+        <label class="w3-label w3-validate">Email</label>
+        
+        <input class="w3-input" type="password" placeholder="Password" required>
+        <label class="w3-label w3-validate">password</label>
+        <br/> <br/>
+        <button class="w3-btn w3-blue">Register</button></p>
+
+</form>
+     </div>
+    </div>
+    
+  </div>
+</div>
+    <button>
+      <input id="pic"  type="file" accept="image/*">
+    </button>
+    <input type="button" onclick="test()" />
+    
+    <script>
+      function test(){
+        alert($('#pic').val());
+      }
+    </script>
+  </body>
+</html>
